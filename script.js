@@ -134,7 +134,7 @@ $(document).ready(function () {
             });
 
             let content = $('<div>').addClass('node-content');
-            let img = $('<img>').attr('src', flagUrl).attr('alt', team);
+            let img = $('<img>').attr('src', flagUrl).attr('alt', team).attr('title', team);
 
             content.append(img);
             node.append(content);
@@ -202,7 +202,7 @@ $(document).ready(function () {
                     });
 
                     let content = $('<div>').addClass('node-content');
-                    let img = $('<img>').attr('src', flagUrl).attr('alt', winner);
+                    let img = $('<img>').attr('src', flagUrl).attr('alt', winner).attr('title', winner);
                     content.append(img);
                     node.append(content);
                     nodesContainer.append(node);

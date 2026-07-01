@@ -138,16 +138,17 @@ body {
 }
 
 .bracket-line {
-    stroke: #444;
+    stroke: #4b4b4b;
     stroke-width: 1.5;
     fill: none;
     opacity: 0.5;
 }
 
 .bracket-line.active-line {
-    stroke: #999;
+    stroke: #aaa980;
     stroke-width: 2;
     opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(255, 204, 0, 0.4));
 }
 
 .bracket-line.final-line {
