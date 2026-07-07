@@ -65,14 +65,18 @@ $(document).ready(function () {
             return [m.team1, m.team2];
         }
 
-        function findParentMatch(teamName) {
+        function findParentMatch(teamName, currentMatchNum) {
+            let found = null;
             for (let num in matchesDict) {
+                if (parseInt(num) >= parseInt(currentMatchNum)) continue;
                 let match = matchesDict[num];
-                if (match.round === "Round of 32" && (match.team1 === teamName || match.team2 === teamName)) {
-                    return match.num;
+                if (match.team1 === teamName || match.team2 === teamName) {
+                    if (!found || parseInt(num) > parseInt(found)) {
+                        found = num;
+                    }
                 }
             }
-            return null;
+            return found;
         }
 
         let sequence = [];
@@ -80,7 +84,7 @@ $(document).ready(function () {
             let parentNum = parseInt(m.team1.substring(1));
             sequence = sequence.concat(getBracketSequence(parentNum, matchesDict));
         } else {
-            let parentNum = findParentMatch(m.team1);
+            let parentNum = findParentMatch(m.team1, matchNum);
             if (parentNum) {
                 sequence = sequence.concat(getBracketSequence(parentNum, matchesDict));
             } else {
@@ -92,7 +96,7 @@ $(document).ready(function () {
             let parentNum = parseInt(m.team2.substring(1));
             sequence = sequence.concat(getBracketSequence(parentNum, matchesDict));
         } else {
-            let parentNum = findParentMatch(m.team2);
+            let parentNum = findParentMatch(m.team2, matchNum);
             if (parentNum) {
                 sequence = sequence.concat(getBracketSequence(parentNum, matchesDict));
             } else {
